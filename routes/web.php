@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\FollowController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TweetController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,9 +17,25 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect(route('tweets.index'));
 });
 
-Auth::routes();
+Route::middleware('auth')->group(function () {
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::resource('tweets', TweetController::class)->only([
+        'index', 'store'
+    ]);
+
+});
+
+Route::resource('profiles', ProfileController::class)
+    ->parameters([
+    'profiles' => 'user:name'
+])
+    ->only([
+    'show', 'edit', 'update'
+]);
+
+Route::post('/profiles/{user:name}/follow', [FollowController::class, 'store'])->name('profiles.follow');
+
+Auth::routes();

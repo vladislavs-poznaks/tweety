@@ -9,7 +9,7 @@ use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, Followable;
 
     /**
      * The attributes that are mass assignable.
@@ -40,4 +40,21 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function getAvatarAttribute(): string
+    {
+        return 'https://i.pravatar.cc/300?u=' . $this->email;
+    }
+
+    public function tweets()
+    {
+        return $this->hasMany(Tweet::class)->latest();
+    }
+
+    public function timeline()
+    {
+        $ids = $this->follows()->pluck('id')->push($this->id);
+
+        return Tweet::whereIn('user_id', $ids)->latest()->get();
+    }
 }
