@@ -21,21 +21,18 @@ Route::get('/', function () {
 });
 
 Route::middleware('auth')->group(function () {
-
-    Route::resource('tweets', TweetController::class)->only([
-        'index', 'store'
-    ]);
-
+    Route::get('/tweets', [TweetController::class, 'index'])->name('tweets.index');
+    Route::post('/tweets', [TweetController::class, 'store'])->name('tweets.store');
 });
 
-Route::resource('profiles', ProfileController::class)
-    ->parameters([
-    'profiles' => 'user:name'
-])
-    ->only([
-    'show', 'edit', 'update'
-]);
+Route::middleware('can:edit,user')->group(function () {
+    Route::get('/profiles/{user:username}/edit', [ProfileController::class, 'edit'])->name('profiles.edit');
+});
 
-Route::post('/profiles/{user:name}/follow', [FollowController::class, 'store'])->name('profiles.follow');
+Route::patch('/profiles/{user:username}', [ProfileController::class, 'update'])->name('profiles.update');
+
+Route::get('/profiles/{user:username}', [ProfileController::class, 'show'])->name('profiles.show');
+
+Route::post('/profiles/{user:username}/follow', [FollowController::class, 'store'])->name('profiles.follow');
 
 Auth::routes();

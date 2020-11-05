@@ -19,10 +19,12 @@
                 <p class="text-sm">Joined {{ $user->created_at->diffForHumans() }}</p>
             </div>
             <div class="flex space-x-4">
+                @can('edit', $user)
                 <a
                     href="{{ route('profiles.edit', ['user' => $user]) }}"
                     class="bg-gray-500 text-white rounded-full shadow px-5 py-3"
                 >Edit Profile</a>
+                @endcan
 
                 <x-follow-button :user="$user"></x-follow-button>
             </div>

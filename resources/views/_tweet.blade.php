@@ -2,7 +2,7 @@
     <div class="flex-shrink-0">
         <a href="{{ route('profiles.show', ['user' => $tweet->user]) }}">
             <img
-                src="https://i.pravatar.cc/300?u={{ $tweet->user->email }}"
+                src="{{ $tweet->user->avatar }}"
                 alt="avatar"
                 class="w-10 rounded-full"
             >

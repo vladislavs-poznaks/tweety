@@ -1,7 +1,7 @@
 <h3 class="font-bold text-xl">Following</h3>
 
 <ul class="space-y-4 mt-4">
-    @foreach(auth()->user()->follows as $user)
+    @forelse(auth()->user()->follows as $user)
         <li>
             <a
                 href="{{ route('profiles.show', ['user' => $user]) }}"
@@ -14,5 +14,7 @@
                 <span>{{ $user->name }}</span>
             </a>
         </li>
-    @endforeach
+    @empty
+        <p>You aren't following anyone yet...</p>
+    @endforelse
 </ul>

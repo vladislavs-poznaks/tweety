@@ -47,6 +47,10 @@
                 >Login
                 </button>
             </div>
+
+            <div class="text-sm text-gray-800 text-center hover:underline mt-2">
+                <a href="{{ route('register') }}">Sign Up</a>
+            </div>
         </form>
     </div>
 </x-master>
