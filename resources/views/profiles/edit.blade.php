@@ -79,7 +79,6 @@
                             class="text-sm rounded-full w-full px-2 py-2 focus:outline-none focus:shadow-outline
                     @error('avatar') is-invalid @enderror"
                             name="avatar"
-                            required
                             autocomplete="avatar"
                             autofocus
                         >

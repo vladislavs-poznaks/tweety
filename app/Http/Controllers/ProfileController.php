@@ -29,8 +29,13 @@ class ProfileController extends Controller
             'username' => $request->username,
             'name' => $request->name,
             'email' => $request->email,
-            'avatar' => $request->avatar->store('avatars')
         ]);
+
+        if ($request->avatar) {
+            $user->update([
+                'avatar' => $request->avatar->store('avatars')
+            ]);
+        }
 
         return redirect(route('profiles.show', [
             'user' => $user

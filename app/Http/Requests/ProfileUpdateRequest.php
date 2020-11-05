@@ -28,7 +28,7 @@ class ProfileUpdateRequest extends FormRequest
             'username' => ['required', 'string', 'max:30', 'alpha_dash', Rule::unique('users')->ignore($this->user)],
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'email', Rule::unique('users')->ignore($this->user)],
-            'avatar' => ['required', 'file']
+            'avatar' => ['file']
         ];
     }
 }

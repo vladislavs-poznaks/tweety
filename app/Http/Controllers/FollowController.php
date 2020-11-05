@@ -10,6 +10,6 @@ class FollowController extends Controller
     {
         auth()->user()->follows()->toggle($user);
 
-        return redirect(route('profiles.show', ['user' => $user]));
+        return back();
     }
 }

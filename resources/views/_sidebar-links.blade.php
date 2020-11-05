@@ -9,7 +9,7 @@
     </li>
     <li>
         <a
-            href="#"
+            href="{{ route('explore.index') }}"
             class="font-bold text-lg mb-4 block"
         >
             Explore

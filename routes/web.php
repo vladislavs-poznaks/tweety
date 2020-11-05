@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ExploreController;
 use App\Http\Controllers\FollowController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TweetController;
@@ -23,16 +24,16 @@ Route::get('/', function () {
 Route::middleware('auth')->group(function () {
     Route::get('/tweets', [TweetController::class, 'index'])->name('tweets.index');
     Route::post('/tweets', [TweetController::class, 'store'])->name('tweets.store');
+
+    Route::post('/profiles/{user:username}/follow', [FollowController::class, 'store'])->name('profiles.follow');
 });
 
-Route::middleware('can:edit,user')->group(function () {
+Route::middleware(['auth', 'can:edit,user'])->group(function () {
     Route::get('/profiles/{user:username}/edit', [ProfileController::class, 'edit'])->name('profiles.edit');
+    Route::patch('/profiles/{user:username}', [ProfileController::class, 'update'])->name('profiles.update');
 });
-
-Route::patch('/profiles/{user:username}', [ProfileController::class, 'update'])->name('profiles.update');
 
 Route::get('/profiles/{user:username}', [ProfileController::class, 'show'])->name('profiles.show');
-
-Route::post('/profiles/{user:username}/follow', [FollowController::class, 'store'])->name('profiles.follow');
+Route::get('/explore', [ExploreController::class, 'index'])->name('explore.index');
 
 Auth::routes();
