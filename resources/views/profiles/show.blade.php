@@ -26,7 +26,7 @@
                 >Edit Profile</a>
                 @endcan
 
-                <x-follow-button :user="$user"></x-follow-button>
+                <x-follow-button :user="$user"/>
             </div>
         </div>
 
