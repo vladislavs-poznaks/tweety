@@ -9,7 +9,7 @@
     </li>
     <li>
         <a
-            href="{{ route('explore.index') }}"
+            href="{{ route('explore') }}"
             class="font-bold text-lg mb-4 block"
         >
             Explore
@@ -56,11 +56,14 @@
         </a>
     </li>
     <li>
-        <a
-            href="#"
-            class="font-bold text-lg mb-4 block"
-        >
-            More
-        </a>
+        <form action="{{ route('logout') }}" method="POST">
+            @csrf
+            <button
+                type="submit"
+                class="font-bold text-lg mb-4 block"
+            >
+                Logout
+            </button>
+        </form>
     </li>
 </ul>

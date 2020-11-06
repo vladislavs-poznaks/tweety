@@ -5,3 +5,6 @@
         <p class="px-6 py-4"> No tweets yet..</p>
     @endforelse
 </div>
+<div class="mt-3 mb-16">
+    {{ $tweets->links() }}
+</div>

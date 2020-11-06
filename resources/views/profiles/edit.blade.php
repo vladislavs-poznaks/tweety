@@ -123,12 +123,16 @@
 {{--            <div class="text-sm text-red-500">{{ $message }}</div>--}}
 {{--            @enderror--}}
 
-            <div class="text-center pb-4">
+            <div class="text-center pb-4 space-x-4">
                 <button
                     type="submit"
                     class="bg-blue-400 text-white rounded-full shadow px-6 py-3 mt-3"
                 >Update
                 </button>
+                <a
+                    href="{{ route('profiles.show', $user) }}"
+                    class="text-gray-700 hover:text-gray-900"
+                >Cancel</a>
             </div>
 
         </form>

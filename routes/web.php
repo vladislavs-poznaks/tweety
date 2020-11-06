@@ -34,6 +34,6 @@ Route::middleware(['auth', 'can:edit,user'])->group(function () {
 });
 
 Route::get('/profiles/{user:username}', [ProfileController::class, 'show'])->name('profiles.show');
-Route::get('/explore', [ExploreController::class, 'index'])->name('explore.index');
+Route::get('/explore', ExploreController::class)->name('explore');
 
 Auth::routes();
