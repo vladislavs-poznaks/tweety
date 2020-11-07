@@ -18,16 +18,20 @@ trait Likable
 
     public function like($user = null)
     {
-        $this->likes()->updateOrCreate([
-            'user_id' => $user ? $user->id : auth()->user()->id
-        ], [
-            'liked' => true
-        ]);
+        $this->isLikedBy($user ?? auth()->user())
+            ? $this->likes()->delete()
+            : $this->likes()->updateOrCreate([
+                'user_id' => $user ? $user->id : auth()->user()->id
+            ], [
+                'liked' => true
+            ]);
     }
 
     public function dislike($user = null)
     {
-        $this->likes()->updateOrCreate([
+        $this->isDislikedBy($user ?? auth()->user())
+            ? $this->likes()->delete()
+            : $this->likes()->updateOrCreate([
             'user_id' => $user ? $user->id : auth()->user()->id
         ], [
             'liked' => false

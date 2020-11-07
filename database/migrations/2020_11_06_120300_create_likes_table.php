@@ -17,7 +17,7 @@ class CreateLikesTable extends Migration
             $table->id();
             $table->foreignId('user_id');
             $table->foreignId('tweet_id');
-            $table->boolean('liked');
+            $table->boolean('liked')->nullable();
             $table->timestamps();
 
             $table->foreign('user_id')
