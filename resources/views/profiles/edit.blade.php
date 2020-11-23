@@ -66,6 +66,30 @@
             <div class="text-sm text-red-500">{{ $message }}</div>
             @enderror
 
+            <div class="space-y-2">
+                <label for="description" class="">Description</label>
+                <textarea
+                    name="description"
+                    id="description"
+                    placeholder="Tell the world about yourself..."
+                    class="w-full h-28 focus:outline-none text-sm px-2 py-2 rounded-lg focus:shadow-outline"
+                >{{ $user->description ?? '' }}</textarea>
+{{--                <input--}}
+{{--                    id="description"--}}
+{{--                    type="description"--}}
+{{--                    class="text-sm rounded-full w-full px-2 py-2 focus:outline-none focus:shadow-outline--}}
+{{--                    @error('description') is-invalid @enderror"--}}
+{{--                    name="description"--}}
+{{--                    value="{{ $user->description }}"--}}
+{{--                    required--}}
+{{--                    autocomplete="description"--}}
+{{--                    autofocus--}}
+{{--                >--}}
+            </div>
+            @error('email')
+            <div class="text-sm text-red-500">{{ $message }}</div>
+            @enderror
+
             <div class="flex items-center space-x-4">
                 <img
                     src="{{ $user->avatar }}"
@@ -84,6 +108,29 @@
                         >
                     </div>
                     @error('avatar')
+                    <div class="text-sm text-red-500">{{ $message }}</div>
+                    @enderror
+                </div>
+            </div>
+
+            <div class="flex items-center space-x-4">
+                <img
+                    src="{{ $user->banner }}"
+                    alt="Your banner"
+                    class="w-40 rounded-2xl"
+                >
+                <div>
+                    <div class="space-y-2">
+                        <input
+                            type="file"
+                            class="text-sm rounded-full w-full px-2 py-2 focus:outline-none focus:shadow-outline
+                    @error('banner') is-invalid @enderror"
+                            name="banner"
+                            autocomplete="banner"
+                            autofocus
+                        >
+                    </div>
+                    @error('banner')
                     <div class="text-sm text-red-500">{{ $message }}</div>
                     @enderror
                 </div>

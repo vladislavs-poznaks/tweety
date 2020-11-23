@@ -2,8 +2,9 @@
     <header class="mb-6">
         <div class="relative">
             <img
-                src="/images/default-profile-banner.jpg"
+                src="{{ $user->banner }}"
                 alt="Your Banner"
+                class="rounded-2xl h-64 w-full object-cover"
             >
             <img
                 src="{{ $user->avatar }}"
@@ -31,7 +32,7 @@
         </div>
 
         <p class="text-sm text-center mt-4">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam beatae harum iusto nemo non provident, quam quos soluta! Consequatur eligendi expedita ipsa omnis optio quis.
+            {{ $user->description ?? '' }}
         </p>
     </header>
 

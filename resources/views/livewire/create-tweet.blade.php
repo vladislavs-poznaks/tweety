@@ -26,6 +26,5 @@
                 class="bg-blue-400 text-white rounded-full shadow px-3 py-2"
             >Tweet-a-roo!</button>
         </footer>
-
     </form>
 </div>

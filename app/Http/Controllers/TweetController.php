@@ -21,6 +21,17 @@ class TweetController extends Controller
             'body' => $request->body
         ]);
 
+        flash('Tweet published!')->success();
+
+        return redirect(route('tweets.index'));
+    }
+
+    public function destroy(Tweet $tweet)
+    {
+        $tweet->delete();
+
+        flash('Tweet deleted!')->important();
+
         return redirect(route('tweets.index'));
     }
 }

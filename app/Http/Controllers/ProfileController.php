@@ -31,11 +31,18 @@ class ProfileController extends Controller
             'username' => $request->username,
             'name' => $request->name,
             'email' => $request->email,
+            'description' => $request->description,
         ]);
 
         if ($request->avatar) {
             $user->update([
                 'avatar' => $request->avatar->store('avatars')
+            ]);
+        }
+
+        if ($request->banner) {
+            $user->update([
+                'banner' => $request->banner->store('banners')
             ]);
         }
 

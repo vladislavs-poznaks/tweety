@@ -20,7 +20,9 @@ class User extends Authenticatable
         'name',
         'username',
         'email',
+        'description',
         'avatar',
+        'banner',
         'password',
     ];
 
@@ -45,7 +47,12 @@ class User extends Authenticatable
 
     public function getAvatarAttribute($value): string
     {
-        return asset($value ?: '/images/default-avatar.jpeg');
+        return asset($value ?? '/images/default-avatar.jpeg');
+    }
+
+    public function getBannerAttribute($value): string
+    {
+        return asset($value ?? '/images/default-profile-banner.jpg');
     }
 
     public function tweets()

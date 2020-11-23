@@ -9,12 +9,28 @@
                 >
             </a>
         </div>
-        <div>
+        <div class="w-full">
+            <div class="flex items-center">
+                <a
+                    class="mr-2"
+                    href="{{ route('profiles.show', ['user' => $tweet->user]) }}"
+                >
+                    <h5 class="font-bold">{{ $tweet->user->name }}</h5>
+                </a>
+                &middot;
+                <span class="text-sm ml-2">{{ $tweet->created_at->diffForHumans() }}</span>
+            </div>
             <a href="{{ route('profiles.show', ['user' => $tweet->user]) }}">
-                <h5 class="font-bold">{{ $tweet->user->name }}</h5>
+                <h6 class="text-sm text-gray-600">{{ '@' . $tweet->user->username }}</h6>
             </a>
             <p class="text-sm mt-1">{{ $tweet->body }}</p>
-            <x-like-buttons :tweet="$tweet"/>
+
+            <div class="flex justify-between items-center w-full">
+                <x-like-buttons :tweet="$tweet"/>
+                @if($tweet->user->is(auth()->user()))
+                <x-delete-button :tweet="$tweet"/>
+                @endif
+            </div>
         </div>
     </div>
 </div>
